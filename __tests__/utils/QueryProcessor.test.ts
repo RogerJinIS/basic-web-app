@@ -39,4 +39,10 @@ describe("QueryProcessor", () => {
         const response: string = QueryProcessor(query);
         expect(response).toBe("90");
     })
+
+    test('should return product for multiplied by query', () => {
+        const query = "What is 23 multiplied by 75?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe("1725");
+    })
 });

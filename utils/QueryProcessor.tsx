@@ -21,5 +21,11 @@ export default function QueryProcessor(query: string): string {
     return String(sum);
   }
 
+  const multMatch = query.match(/what is (\d+) multiplied by (\d+)/i);
+  if (multMatch) {
+    const product = parseInt(multMatch[1], 10) * parseInt(multMatch[2], 10);
+    return String(product);
+  }
+
   return "";
 }
