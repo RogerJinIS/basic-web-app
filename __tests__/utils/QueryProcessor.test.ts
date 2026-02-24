@@ -40,6 +40,12 @@ describe("QueryProcessor", () => {
         expect(response).toBe("90");
     })
 
+    test('should return difference for minus query', () => {
+        const query = "What is 77 minus 95?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe("-18");
+    })
+
     test('should return product for multiplied by query', () => {
         const query = "What is 23 multiplied by 75?";
         const response: string = QueryProcessor(query);

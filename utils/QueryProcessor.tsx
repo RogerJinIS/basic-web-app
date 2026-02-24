@@ -29,6 +29,12 @@ export default function QueryProcessor(query: string): string {
     return String(sum);
   }
 
+  const minusMatch = query.match(/what is (\d+) minus (\d+)/i);
+  if (minusMatch) {
+    const diff = parseInt(minusMatch[1], 10) - parseInt(minusMatch[2], 10);
+    return String(diff);
+  }
+
   const multMatch = query.match(/what is (\d+) multiplied by (\d+)/i);
   if (multMatch) {
     const product = parseInt(multMatch[1], 10) * parseInt(multMatch[2], 10);
