@@ -23,6 +23,14 @@ export default function QueryProcessor(query: string): string {
     return "ruijianj";
   }
 
+  const plusMultMatch = query.match(/what is (\d+) plus (\d+) multiplied by (\d+)/i);
+  if (plusMultMatch) {
+    const a = parseInt(plusMultMatch[1], 10);
+    const b = parseInt(plusMultMatch[2], 10);
+    const c = parseInt(plusMultMatch[3], 10);
+    return String(a + b * c);
+  }
+
   const plusMatch = query.match(/what is (\d+) plus (\d+)/i);
   if (plusMatch) {
     const sum = parseInt(plusMatch[1], 10) + parseInt(plusMatch[2], 10);
