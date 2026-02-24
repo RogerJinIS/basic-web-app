@@ -69,4 +69,10 @@ describe("QueryProcessor", () => {
         const response: string = QueryProcessor(query);
         expect(response).toBe("47, 13, 3");
     })
+
+    test('should return anagram of listen', () => {
+        const query = "Which of the following is an anagram of listen: google, banana, enlists, inlets?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe("inlets");
+    })
 });

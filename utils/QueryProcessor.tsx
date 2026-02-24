@@ -6,6 +6,14 @@ function isPrime(n: number): boolean {
   return true;
 }
 
+function normalizedLetters(s: string): string {
+  return s.toLowerCase().replace(/\s/g, "").split("").sort().join("");
+}
+
+function isAnagram(a: string, b: string): boolean {
+  return normalizedLetters(a) === normalizedLetters(b);
+}
+
 export default function QueryProcessor(query: string): string {
   if (query.toLowerCase().includes("shakespeare")) {
     return (
@@ -62,6 +70,14 @@ export default function QueryProcessor(query: string): string {
     const numbers = primesMatch[1].split(",").map((s) => parseInt(s.trim(), 10));
     const primes = numbers.filter((n) => !isNaN(n) && isPrime(n));
     return primes.join(", ");
+  }
+
+  const anagramMatch = query.match(/which of the following is an anagram of (\w+):\s*([\w,\s]+)/i);
+  if (anagramMatch) {
+    const target = anagramMatch[1].trim();
+    const candidates = anagramMatch[2].split(",").map((s) => s.trim());
+    const anagrams = candidates.filter((word) => word && isAnagram(target, word));
+    return anagrams.join(", ");
   }
 
   return "";
