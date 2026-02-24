@@ -1,3 +1,11 @@
+function isPrime(n: number): boolean {
+  if (n < 2) return false;
+  for (let d = 2; d * d <= n; d++) {
+    if (n % d === 0) return false;
+  }
+  return true;
+}
+
 export default function QueryProcessor(query: string): string {
   if (query.toLowerCase().includes("shakespeare")) {
     return (
@@ -25,6 +33,13 @@ export default function QueryProcessor(query: string): string {
   if (multMatch) {
     const product = parseInt(multMatch[1], 10) * parseInt(multMatch[2], 10);
     return String(product);
+  }
+
+  const primesMatch = query.match(/which of the following numbers are primes:\s*([\d,\s]+)/i);
+  if (primesMatch) {
+    const numbers = primesMatch[1].split(",").map((s) => parseInt(s.trim(), 10));
+    const primes = numbers.filter((n) => !isNaN(n) && isPrime(n));
+    return primes.join(", ");
   }
 
   return "";
