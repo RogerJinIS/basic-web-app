@@ -52,6 +52,12 @@ describe("QueryProcessor", () => {
         expect(response).toBe("1725");
     })
 
+    test('should return result for multiplied by plus query', () => {
+        const query = "What is 31 multiplied by 94 plus 71?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe("2985");
+    })
+
     test('should return primes from list', () => {
         const query = "Which of the following numbers are primes: 47, 13, 3, 87, 78?";
         const response: string = QueryProcessor(query);
