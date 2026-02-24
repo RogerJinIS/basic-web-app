@@ -33,4 +33,10 @@ describe("QueryProcessor", () => {
             "ruijianj"
           ));
     })
+
+    test('should return sum for plus query', () => {
+        const query = "What is 23 plus 67?";
+        const response: string = QueryProcessor(query);
+        expect(response).toBe("90");
+    })
 });
